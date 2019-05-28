@@ -23,6 +23,6 @@ class QdbCheck(AgentCheck):
             if t == 'GAUGE':
                 self.gauge(k, int(v), tags=['node_id:' + node_id])
             elif t == 'COUNTER':
-                self.count(k, int(v), tags=['node_id:' + node_id])
+                self.monotonic_count(k, int(v), tags=['node_id:' + node_id])
             else:
                 raise RuntimeError("Unrecognized counter type: '" + t + "'")
