@@ -8,7 +8,7 @@ class QdbCheck(AgentCheck):
     def check(self, instance):
         cluster_uri = instance['cluster_uri']
         node_id = instance['node_id']
-        metrics, err, retcode = get_subprocess_output(["python",
+        metrics, err, retcode = get_subprocess_output(["python3",
                                                        "-m", "qdb_datadog",
                                                        "--cluster", cluster_uri,
                                                        "--node-id", node_id,
@@ -23,6 +23,6 @@ class QdbCheck(AgentCheck):
             if t == 'GAUGE':
                 self.gauge(k, int(v), tags=['node_id:' + node_id])
             elif t == 'COUNTER':
-                self.count(k, int(v))
+                self.count(k, int(v), tags=['node_id:' + node_id])
             else:
                 raise RuntimeError("Unrecognized counter type: '" + t + "'")
