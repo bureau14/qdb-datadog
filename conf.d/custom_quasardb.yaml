@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+  - min_collection_interval: 15
+    cluster_uri: "qdb://127.0.0.1:2836"
+    node_id: "0-0-0-1"
