@@ -7,14 +7,28 @@ __version__ = "3.3.3"
 class QdbCheck(AgentCheck):
     def check(self, instance):
         cluster_uri = instance['cluster_uri']
+        public_key = instance['cluster_public_key']
+        security_file = instance['user_security_file']
         node_id = instance['node_id']
-        metrics, err, retcode = get_subprocess_output(["python3",
-                                                       "-m", "qdb_datadog",
-                                                       "--cluster", cluster_uri,
-                                                       "--node-id", node_id,
-                                                       "--prefix", "qdb"],
-                                                      self.log,
-                                                      raise_on_empty_output=True)
+
+        if public_key and security_file:
+            metrics, err, retcode = get_subprocess_output(["python3",
+                                                           "-m", "qdb_datadog",
+                                                           "--cluster", cluster_uri,
+                                                           "--node-id", node_id,
+                                                           "--prefix", "qdb",
+                                                           "--cluster-public-key", public_key,
+                                                           "--user-security-file", security_file],
+                                                          self.log,
+                                                          raise_on_empty_output=True)
+        else:
+            metrics, err, retcode = get_subprocess_output(["python3",
+                                                           "-m", "qdb_datadog",
+                                                           "--cluster", cluster_uri,
+                                                           "--node-id", node_id,
+                                                           "--prefix", "qdb"],
+                                                          self.log,
+                                                          raise_on_empty_output=True)
 
 
         for m in metrics.splitlines():
