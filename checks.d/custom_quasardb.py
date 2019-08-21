@@ -2,7 +2,7 @@ from datadog_checks.utils.subprocess_output import get_subprocess_output
 from datadog_checks.checks import AgentCheck
 
 # content of the special variable __version__ will be shown in the Agent status page
-__version__ = "3.3.3"
+__version__ = "3.4.1"
 
 class QdbCheck(AgentCheck):
     def check(self, instance):
