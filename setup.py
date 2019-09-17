@@ -6,7 +6,7 @@ import re
 from setuptools import setup
 
 # Should equal quasardb api version
-version = "3.4.1"
+version = "3.4.2"
 
 setup(
     name = "qdb-datadog",
