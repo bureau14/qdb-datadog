@@ -1,3 +1,3 @@
 datadog>=0.28.0
 requests
-quasardb==3.9.0.rc2
+quasardb==3.8.5
