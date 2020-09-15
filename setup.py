@@ -6,7 +6,7 @@ import re
 from setuptools import setup
 
 # Should equal quasardb api version
-version = "3.8.5"
+version = "3.8.9"
 
 setup(
     name = "qdb-datadog",
@@ -20,5 +20,5 @@ setup(
     install_requires=[
         "datadog >= 0.28.0",
         "requests",
-        "quasardb == 3.8.5"],
+        "quasardb == 3.8.9"],
     )
